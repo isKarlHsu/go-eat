@@ -3,9 +3,11 @@ module eat
 go 1.18
 
 require (
+	github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1
 	github.com/gin-gonic/gin v1.9.0
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/sirupsen/logrus v1.9.0
+	github.com/spf13/cobra v1.7.0
 	gopkg.in/yaml.v2 v2.4.0
 	gorm.io/driver/mysql v1.5.0
 	gorm.io/gorm v1.25.0
@@ -33,7 +35,6 @@ require (
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.27.8 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.6 // indirect
-	github.com/spf13/cobra v1.7.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.9 // indirect
@@ -42,6 +43,7 @@ require (
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/sys v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
+	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

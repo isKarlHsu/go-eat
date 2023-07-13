@@ -9,6 +9,7 @@ import (
 )
 
 func InitConfig() {
+	// todo 解决测试用例下目录结构问题
 	const ConfigFile = "settings.yaml"
 	c := &config.Config{}
 	yamlConf, err := ioutil.ReadFile(ConfigFile)

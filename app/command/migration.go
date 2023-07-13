@@ -13,6 +13,7 @@ var migrationCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		err := global.DB.Migrator().AutoMigrate(
 			&model.UserModel{},
+			&model.FoodModel{},
 		)
 		if err != nil {
 			global.Logger.Error("生成数据表失败")

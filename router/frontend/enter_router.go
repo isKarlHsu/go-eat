@@ -1,7 +1,7 @@
 package frontend
 
 import (
-	"eat/core/response"
+	"eat/utils/response"
 	"github.com/gin-gonic/gin"
 )
 
