@@ -6,4 +6,5 @@ type Config struct {
 	Redis  Redis  `yaml:"redis"`
 	Logger Logger `yaml:"logger"`
 	Jwt    Jwt    `yaml:"jwt"`
+	Wxapp  Wxapp  `yaml:"wxapp"`
 }

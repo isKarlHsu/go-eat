@@ -22,5 +22,6 @@ func InitRouter() *gin.Engine {
 	frontendRouterGroup := router.Group("api")
 	frontend.IndexRouter(frontendRouterGroup)
 	frontend.FoodRouter(frontendRouterGroup)
+	frontend.WechatRouter(frontendRouterGroup)
 	return router
 }

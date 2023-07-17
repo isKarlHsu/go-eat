@@ -34,3 +34,7 @@ jwt:
   secret: eat
   expires: 2
   issuer: eat
+
+wxapp:
+  app_id: wx0e2ff3aa2ebf9428
+  app_secret: 79a3ace11ac0419ff17e237929d7077a
