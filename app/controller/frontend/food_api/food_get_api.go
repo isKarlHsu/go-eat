@@ -2,6 +2,7 @@ package food_api
 
 import (
 	"eat/app/model"
+	"eat/app/service"
 	"eat/global"
 	"eat/utils/db"
 	"eat/utils/response"
@@ -9,6 +10,22 @@ import (
 	"github.com/gin-gonic/gin"
 	"math"
 )
+
+func (FoodApi) Food(c *gin.Context) {
+	foodService := service.FoodService()
+	var result model.FoodModel
+	for {
+		food, count := foodService.GetFoodForRand()
+		if count > 0 {
+			result = food
+			break
+		}
+	}
+	// foodService2 := service.FoodService()
+	// foodService2.GetFoodForRand()
+
+	response.SuccessWithData(result, c)
+}
 
 type FoodsParams struct {
 	Page     int `json:"page"`

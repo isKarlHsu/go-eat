@@ -3,6 +3,7 @@ package wechat_api
 import (
 	"eat/app/model"
 	"eat/global"
+	"eat/utils/jwt"
 	"eat/utils/response"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -12,12 +13,12 @@ import (
 )
 
 type SessionParams struct {
-	Code string `json:"code"`
+	Code          string `json:"code"`
 	EncryptedData string `json:"encryptedData"`
-	Iv string `json:"iv"`
+	Iv            string `json:"iv"`
 }
 
-func (WechatApi) User (c *gin.Context) {
+func (WechatApi) User(c *gin.Context) {
 	var params SessionParams
 	err := c.ShouldBind(&params)
 	if err != nil {
@@ -63,14 +64,36 @@ func (WechatApi) User (c *gin.Context) {
 
 	// 根据open_id查找用户信息
 	var userModel model.UserModel
-	result := global.DB.Where("open_id = ?", user.OpenID).First(&userModel)
+	result := global.DB.Where("open_id = ?", user.OpenID).Select("user_id,nickname,avatar").First(&userModel)
 	// 找不到则新增用户信息
 	if result.RowsAffected == 0 {
 		userModel.UnionId = user.UnionID
 		userModel.OpenId = user.OpenID
-		userModel.NickName = user.NickName
+		userModel.Nickname = user.NickName
 		userModel.Avatar = user.AvatarURL
 		global.DB.Save(&userModel)
 	}
-	response.SuccessWithData(userModel, c)
+
+	// 生成 jwt token
+	jwtPayLoad := jwt.JwtPayLoad{
+		UserId:   userModel.UserId,
+		Nickname: userModel.Nickname,
+		Avatar:   userModel.Avatar,
+	}
+	token, _ := jwt.GenToken(jwtPayLoad)
+
+	response.SuccessWithData(UserInfo{
+		UserId:   userModel.UserId,
+		Nickname: userModel.Nickname,
+		Avatar:   userModel.Avatar,
+		Token:    token,
+	}, c)
+
+}
+
+type UserInfo struct {
+	UserId   uint   `json:"user_id,omitempty"`
+	Nickname string `json:"nickname,omitempty"`
+	Avatar   string `json:"avatar,omitempty"`
+	Token    string `json:"token,omitempty"`
 }

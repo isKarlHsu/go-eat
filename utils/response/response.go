@@ -14,6 +14,7 @@ type Response struct {
 const (
 	ErrorCode   = 100
 	SuccessCode = 101
+	TokenError  = 401
 )
 
 func Result(code int, data any, message string, c *gin.Context) {
@@ -45,4 +46,8 @@ func ErrorWithData(data any, c *gin.Context) {
 
 func ErrorWithMessage(message string, c *gin.Context) {
 	Result(ErrorCode, map[string]any{}, message, c)
+}
+
+func Fail(c *gin.Context) {
+	Result(TokenError, map[string]any{}, "token error", c)
 }

@@ -9,8 +9,9 @@ import (
 )
 
 type JwtPayLoad struct {
-	UserId   int    `json:"user_id"`
-	Username string `json:"username"`
+	UserId   uint    `json:"user_id"`
+	Nickname string `json:"nickname"`
+	Avatar string `json:"avatar"`
 }
 
 type CustomClaims struct {

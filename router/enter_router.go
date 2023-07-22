@@ -1,6 +1,7 @@
 package router
 
 import (
+	"eat/app/middleware"
 	"eat/global"
 	"eat/router/backend"
 	"eat/router/frontend"
@@ -21,7 +22,9 @@ func InitRouter() *gin.Engine {
 	// 前台接口组
 	frontendRouterGroup := router.Group("api")
 	frontend.IndexRouter(frontendRouterGroup)
-	frontend.FoodRouter(frontendRouterGroup)
 	frontend.WechatRouter(frontendRouterGroup)
+	frontendRouterGroup.Use(middleware.UserJwt())
+	frontend.FoodRouter(frontendRouterGroup)
+	frontend.EatRouter(frontendRouterGroup)
 	return router
 }

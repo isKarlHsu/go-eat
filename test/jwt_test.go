@@ -12,7 +12,8 @@ func Test_Jwt(t *testing.T) {
 
 	user := jwt.JwtPayLoad{
 		UserId:   100001,
-		Username: "admin",
+		Nickname: "admin",
+		Avatar: "https://baidu.com",
 	}
 	token, _ := jwt.GenToken(user)
 	t.Log("jwt token生成结果", token)

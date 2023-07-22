@@ -14,6 +14,7 @@ var migrationCmd = &cobra.Command{
 		err := global.DB.Migrator().AutoMigrate(
 			&model.UserModel{},
 			&model.FoodModel{},
+			&model.RecordModel{},
 		)
 		if err != nil {
 			global.Logger.Error("生成数据表失败")

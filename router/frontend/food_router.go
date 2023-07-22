@@ -7,5 +7,6 @@ import (
 
 func FoodRouter(router *gin.RouterGroup) {
 	FoodApi := frontend.FrontendApi.FootApi
-	router.GET("/food", FoodApi.Foods)
+	router.GET("/food", FoodApi.Food)
+	router.GET("/foods", FoodApi.Foods)
 }
