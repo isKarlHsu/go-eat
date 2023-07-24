@@ -26,5 +26,7 @@ func InitRouter() *gin.Engine {
 	frontendRouterGroup.Use(middleware.UserJwt())
 	frontend.FoodRouter(frontendRouterGroup)
 	frontend.EatRouter(frontendRouterGroup)
+	frontend.UploadRouter(frontendRouterGroup)
+	frontend.UserRouter(frontendRouterGroup)
 	return router
 }

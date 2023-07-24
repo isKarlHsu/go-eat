@@ -1,5 +1,5 @@
 .idea
 .vscode
-./resource
+./resource/upload/*
 ./test
 settings.yaml
